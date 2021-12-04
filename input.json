@@ -19,5 +19,26 @@
                 "bid": 55
             }
         ]
+    },   
+    {
+        "site": "wikipedia.com",
+        "units": ["banner", "sidebar"],
+        "bids": [
+            {
+                "bidder": "AUCT",
+                "unit": "banner",
+                "bid": 40
+            },
+            {
+                "bidder": "DDER",
+                "unit": "sidebar",
+                "bid": 65
+            },
+            {
+                "bidder": "AUCT",
+                "unit": "sidebar",
+                "bid": 50
+            }
+        ]
     }
 ]
