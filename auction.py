@@ -35,71 +35,74 @@ with open('config.json') as file:
 with open('input.json') as file:
 	inputData = json.load(file)
 
+# create key:value for units for every site
+# {sidebar:0, banner:1}
 
 highestBids = []
 for index, auction in enumerate(inputData):
+	# create unit dictionary for faster ordering of winning bids
+	# unitDict = {unit: idx for idx, unit in enumerate(auction["units"])}
+
+	maxBids = dict.fromkeys(auction["units"])
+	winningBids = {}
 	
 	# cache the config site info
 	siteIndex = getSiteIndex(auction["site"])
+
 	# validate the site
 	if siteIndex > -1:
 		# add list entry to highestBids for auctions
-		highestBids.append([{}])
+		# highestBids.append([None]*len(unitDict))
 		
 		for bid in auction["bids"]:
 			# check if bid: unit is in auction: units list
-			# if bid["unit"] in (unit for unit in auction["units"]):
+			winningBids
 
-			# how to get the index of the auction units???
-			bidIndex = auction["bids"].index(bid["unit"])
-			
+			if bid["unit"] in winningBids.keys():
+				bidAdjust = getBidAdjustment(bid["bidder"])
+				adjustedBid = (bid["bid"] * bidAdjust) + bid["bid"]
 
-			for unitIndex, unit in enumerate(auction["units"]):
-				bidIndex = auction["bids"].index(bbd["unit"])
-				if bidIndex:
-					# validate the bidder is in the config file
-					# Do I cache the biddrs when getting the site name? each site gets a list of bidders? sacrifice space for potential time?
-					bidAdjust = getBidAdjustment(bid["bidder"])
-					# calculate bid with adjustment
-					adjustedBid = bid["bid"] * bidAdjust + bid["bid"]
-					if adjustedBid > config["sites"][siteIndex]["floor"]:
-						if highestBids[index][bidIndex] is None:
-							highestBids[index][bidIndex] = bid
-						elif adjustedBid > highestBids[index][bidIndex]["bid"]:
-							highestBids[index][bidIndex] = bid
-
-		print(highestBids)
-				# print(adjustedBid)
+				if adjustedBid > config["sites"][siteIndex]["floor"]:
+					# always get the value of the unit index from dictioanry
+					if (maxBids[bid["unit"]] is None):
+						maxBids[bid["unit"]] = adjustedBid
+						winningBids.update({bid["unit"]: bid})
+					if adjustedBid > maxBids[bid["unit"]]:
+						maxBids[bid["unit"]] = adjustedBid
+						winningBids[bid["unit"]] = bid
+			#print(winningBids)
+			#print(maxBids)			
+	print(" ")
+					#if adjustedBid > highestBid[unitDict[bid["unit"]]]
 
 
-				# calculate bid
-				
-				#adjustment = ((if bidder["adjustment"]  for bidder in config["bidders"]) where bidder["adjustment"] == bid["bidder"])
-				#bidAmount = bid["bid"] * config["bidders"][???]["name"]
+# how store the bid and the adjustment?
+# push to highestBids at the end of for loop
+# use a maxBid value to store the adjustments
+# use a dictionary to store the 
 
-				
+""""
 
-				
+			if bid["unit"] in auction["units"]:
+				bidIndex = auction["units"].index(bid["unit"])
+				# create a key: value???
+				# key is the unit and value is the index for highestbid?
 
+				bidAdjust = getBidAdjustment(bid["bidder"])
+				adjustedBid = bid["bid"] * bidAdjust + bid["bid"]
 
-			# how to store the highest bids in the right order?
-			# store the winning bids in a list, if multiple bids per site store as a list
-			#highestBids
+				if adjustedBid > config["sites"][siteIndex]["floor"]:
+					# highestBids[index] is site level  [ ]
+					# highestBids[index][bidIndex] is bid level [[], ]  so highestBids[0] returns []
+					if not highestBids[index]:
+						# site bid list is empty
+						highestBids[index].append(bid)
 
+					# how to match the units and the prices?
+					#if bid["unit"]
+					#if adjustedBid > highestBids[index][bidIndex]["bid"]:
+					#highestBids[index][bidIndex] = bid
 
-# store winning bids in list called highestBids, it a list of dictionary values
-# For each auction in input (with index)
-	# cache site info from config
+				#print(highestBids)
 
-	# For each bid in auction
-		# check bidder in config (next if not exist)
-		# check unit in action[units] (next if not exist)
-
-		# if bid["name"] in (bidder[name] for bidder in config[bidders])  -- matches the config bidders[name] to the bid[name]  -- make a function call?
-			# return bidder[adjustment]
-
-		# calculate the bid with the adjustment value
-
-		# if adjustedBid > configSiteCache[floor]  (next if not)
-			# if adjustedBid > highestBids[index][bid] || highestBids[index] is NULL
-				# replace/add bid
+"""
