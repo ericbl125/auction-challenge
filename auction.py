@@ -21,14 +21,11 @@ def getSiteIndex(siteName):
 	:param siteName: string value of the name of the site
 	:return: index value of the site in the config file
 	"""
-	
-	print(siteName)
 	for index, configSite in enumerate(config["sites"]):
 		# print(configSite["name"])
 		if configSite["name"] == siteName:
 			return index
-		else:
-			return -1
+	return -1
 	
 
 with open('config.json') as file:
@@ -47,16 +44,31 @@ for index, auction in enumerate(inputData):
 	# validate the site
 	if siteIndex > -1:
 		# add list entry to highestBids for auctions
-		highestBids.append([])
+		highestBids.append([{}])
 		
 		for bid in auction["bids"]:
 			# check if bid: unit is in auction: units list
-			if bid["unit"] in (unit for unit in auction["units"]):
-				# validate the bidder is in the config file
-				# Do I cache the biddrs when getting the site name? each site gets a list of bidders? sacrifice space for potential time?
-				bidAdjust = getBidAdjustment(bid["bidder"])
-				# calculate bid with adjustment
-				adjustedBid = bid["bid"] * bidAdjust + bid["bid"]
+			# if bid["unit"] in (unit for unit in auction["units"]):
+
+			# how to get the index of the auction units???
+			bidIndex = auction["bids"].index(bid["unit"])
+			
+
+			for unitIndex, unit in enumerate(auction["units"]):
+				bidIndex = auction["bids"].index(bbd["unit"])
+				if bidIndex:
+					# validate the bidder is in the config file
+					# Do I cache the biddrs when getting the site name? each site gets a list of bidders? sacrifice space for potential time?
+					bidAdjust = getBidAdjustment(bid["bidder"])
+					# calculate bid with adjustment
+					adjustedBid = bid["bid"] * bidAdjust + bid["bid"]
+					if adjustedBid > config["sites"][siteIndex]["floor"]:
+						if highestBids[index][bidIndex] is None:
+							highestBids[index][bidIndex] = bid
+						elif adjustedBid > highestBids[index][bidIndex]["bid"]:
+							highestBids[index][bidIndex] = bid
+
+		print(highestBids)
 				# print(adjustedBid)
 
 
