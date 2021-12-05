@@ -27,7 +27,7 @@
             {
                 "bidder": "AUCT",
                 "unit": "banner",
-                "bid": 40
+                "bid": 10
             },
             {
                 "bidder": "BIDD",
@@ -38,6 +38,11 @@
                 "bidder": "AUCT",
                 "unit": "sidebar",
                 "bid": 50
+            },
+            {
+                "bidder": "DUBS",
+                "unit": "sidebar",
+                "bid": 90
             }
         ]
     }
