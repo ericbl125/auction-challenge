@@ -77,5 +77,4 @@ def main(argv):
 
 if __name__ == '__main__':
 	# How to read the input files.
-	print(sys.argv)
 	main(sys.argv)
