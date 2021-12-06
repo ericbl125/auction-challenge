@@ -7,7 +7,7 @@
         },
         {
             "name": "wikipedia.com",
-            "biidders": ["AUCT", "DDER"],
+            "bidders": ["AUCT", "DDER"],
             "floor": 30
         }
     ],
@@ -18,7 +18,7 @@
         },
         {
             "name": "BIDD",
-            "adjustment": -0.4
+            "adjustment": 0
         },
         {
             "name": "DDER",
