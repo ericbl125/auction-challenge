@@ -1,5 +1,17 @@
 # Auction Coding Challenge
 
+## Eric Submission
+I was unable to get the program to read the input file argument when passed through
+docker run.  When run in python it reads the local config.json as that was my
+understanding from reading through the instructions and then reads the provided 
+input.json file from the command arguments.
+
+To run in python
+```bash
+$python auction.py /path/to/input.json
+```
+
+
 One of the things that the Engineering team at Sortable works on is software that
 runs ad auctions, either in the browser or server-side. The goal of this challenge
 is to write a program that will run a simple auction, while enforcing data validity.

@@ -39,7 +39,7 @@ def main(argv):
 		config = json.load(file)
 
 
-	with open(argv[0]) as file:
+	with open(argv[1]) as file:
 		inputData = json.load(file)
 
 	# create key:value for units for every site
@@ -77,4 +77,5 @@ def main(argv):
 
 if __name__ == '__main__':
 	# How to read the input files.
+	print(sys.argv[1])
 	main(sys.argv)
