@@ -19,5 +19,57 @@
                 "bid": 55
             }
         ]
+    },   
+    {
+        "site": "wikipedia.com",
+        "units": ["banner", "sidebar"],
+        "bids": [
+            {
+                "bidder": "AUCT",
+                "unit": "banner",
+                "bid": 10
+            },
+            {
+                "bidder": "BIDD",
+                "unit": "sidebar",
+                "bid": 65
+            },
+            {
+                "bidder": "AUCT",
+                "unit": "sidebar",
+                "bid": 50
+            },
+            {
+                "bidder": "DUBS",
+                "unit": "sidebar",
+                "bid": 90
+            }
+        ]
+    },
+    {
+        "site": "wikipedia.com",
+        "units": ["banner", "sidebar"],
+        "bids": [
+            {
+                "bidder": "AUCT",
+                "unit": "banner",
+                "bid": 10
+            },
+            {
+                "bidder": "BIDD",
+                "unit": "sidebar",
+                "bid": 65
+            },
+            {
+                "bidder": "AUCT",
+                "unit": "sidebar",
+                "bid": 50
+            },
+            {
+                "bidder": "DUBS",
+                "unit": "sidebar",
+                "bid": 90
+            }
+        ]
     }
 ]

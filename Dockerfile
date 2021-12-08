@@ -4,4 +4,5 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY . .
-CMD ["python", "auction.py"]
+ENTRYPOINT ["python", "auction.py"]
+CMD ["input.json"]
